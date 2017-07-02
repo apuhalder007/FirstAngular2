@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/css/master.css">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      <form #loginForm="ngForm">
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="model.email" #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+          <div *ngIf="email.errors && (email.dirty || email.touched)">
+            <div class="alert alert-danger" *ngIf="pwd.errors.required">
+              Email Field Is Required.
+            </div>
+            <div class="alert alert-danger" *ngIf="pwd.errors.pattern">
+              Please Enter a Valid Email.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" id="pwd" name="pwd" [(ngModel)]="model.pwd" #pwd="ngModel" required minlength="5" maxlength="15">
+          <div *ngIf="pwd.errors && (pwd.dirty || pwd.touched)">
+            <div class="alert alert-danger" *ngIf="pwd.errors.required">
+              Password Field Is Required.
+            </div>
+            <div class="alert alert-danger" *ngIf="pwd.errors.minlength">
+              This Field Require Atleast 5 charectars.
+            </div>
+            <div class="alert alert-danger" *ngIf="pwd.errors.maxlength">
+              This Field can't accept more then 15 charectars.
+            </div>
+          </div>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox"> Remember me</label>
+        </div>
+        <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-default">Submit</button>
+      </form>
+      {{model | json}}
+    </div>
+  </div>
+</div>

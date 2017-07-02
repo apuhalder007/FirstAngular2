@@ -1,0 +1,25 @@
+<div class="containter">
+  <div class="row">
+    <div class="col-sm-6 col-offset-3">
+      <ul class="list-group">
+        <li *ngFor="let todo of todos" class="list-group-items" >
+          {{todo.text}}
+          &nbsp;&nbsp;&nbsp;
+          <a (click)="editTodo(todo)" href="javascript:void(0);"> Edit</a> &nbsp;
+          <a (click)="deleteTodo(todo)" href="javascript:void(0);"> Delete</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6 col-offset-3">
+      <form name="todoForm">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="todoText" name="name">
+        </div>
+        <div class="form-group">
+          <button *ngIf="btnToggle" type="button" name="button" (click)="addTodo()">Add</button>
+          <button *ngIf="!btnToggle" type="button" name="button" (click)="doEditTodo()">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
